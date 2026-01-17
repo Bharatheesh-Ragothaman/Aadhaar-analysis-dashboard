@@ -65,14 +65,14 @@ def load_combined_data():
     data_dir = Path('../data')
     
     if not data_dir.exists():
-        _ = st.error('Data directory not found! Create ./data folder and add CSV files.')
+        _ = st.error('Data directory not found! Create ../data folder and add CSV files.')
         return None
     
     # Find all enrolment files
     enrolment_files = sorted(glob.glob(str(data_dir / '*enrolment*.csv')))
     
     if not enrolment_files:
-        _ = st.error('No enrolment CSV files found in ./data directory!')
+        _ = st.error('No enrolment CSV files found in ../data directory!')
         return None
     
     # Load and combine enrolment data
@@ -105,7 +105,7 @@ def load_combined_data():
 @st.cache_data
 def load_biometric_data():
     """Load biometric data if available"""
-    data_dir = Path('./data')
+    data_dir = Path('../data')
     biometric_files = sorted(glob.glob(str(data_dir / '*biometric*.csv')))
     
     if not biometric_files:
@@ -130,7 +130,7 @@ def load_biometric_data():
 @st.cache_data
 def load_demographic_data():
     """Load demographic data if available"""
-    data_dir = Path('./data')
+    data_dir = Path('../data')
     demographic_files = sorted(glob.glob(str(data_dir / '*demographic*.csv')))
     
     if not demographic_files:
