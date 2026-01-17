@@ -11,6 +11,8 @@ import plotly.graph_objects as go
 import numpy as np
 from pathlib import Path
 import glob
+from pathlib import Path
+import os
 from datetime import datetime
 import warnings
 warnings.filterwarnings('ignore')
@@ -58,11 +60,12 @@ h2 { color: #374151; font-size: 1.8rem; font-weight: 600; margin-top: 2rem; marg
 # ============================================================================
 # DATA LOADING
 # ============================================================================
+REPO_ROOT = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 @st.cache_data
 def load_combined_data():
     """Load and combine all CSV files from data directory"""
-    data_dir = Path('../data')
+    data_dir = REPO_ROOT / "data"
     
     if not data_dir.exists():
         _ = st.error('Data directory not found! Create ../data folder and add CSV files.')
@@ -105,7 +108,7 @@ def load_combined_data():
 @st.cache_data
 def load_biometric_data():
     """Load biometric data if available"""
-    data_dir = Path('../data')
+    data_dir = REPO_ROOT / "data"
     biometric_files = sorted(glob.glob(str(data_dir / '*biometric*.csv')))
     
     if not biometric_files:
@@ -130,7 +133,7 @@ def load_biometric_data():
 @st.cache_data
 def load_demographic_data():
     """Load demographic data if available"""
-    data_dir = Path('../data')
+    data_dir = REPO_ROOT / "data"
     demographic_files = sorted(glob.glob(str(data_dir / '*demographic*.csv')))
     
     if not demographic_files:
